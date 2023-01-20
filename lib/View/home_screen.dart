@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/Core/theme/my_theme.dart';
 import 'package:movies_app/View/browse/browse_view.dart';
-import 'package:movies_app/View/home/home_view.dart';
+import 'package:movies_app/View/home/home_view/home_view.dart';
 import 'package:movies_app/View/search/search_view.dart';
 import 'package:movies_app/View/watchlist/watchlist_view.dart';
 
