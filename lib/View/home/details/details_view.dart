@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:movies_app/Core/theme/my_theme.dart';
 import 'package:movies_app/Model/api/api_manager.dart';
 import 'package:movies_app/Model/movie_details/MoviesDetails.dart';
-import 'package:movies_app/Model/movie_popular/Results.dart';
+import 'package:movies_app/Model/movie_popular/Result.dart';
 import 'package:movies_app/View/home/details/similar/similar_widget.dart';
 
 import '../../../Model/movie_similar/MoviesSimilar.dart';
@@ -11,7 +11,7 @@ import 'details_widget.dart';
 
 class DetailsView extends StatelessWidget {
   static const String routeName = 'details';
-  MoviesDetails? moviesDetails;
+  Result? moviesDetails;
 
   @override
   Widget build(BuildContext context) {

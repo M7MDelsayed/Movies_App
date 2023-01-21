@@ -6,6 +6,7 @@ class MyTheme {
   static final ThemeData darkTheme = ThemeData(
     primaryColor: primaryColor,
     scaffoldBackgroundColor: primaryColor,
+    appBarTheme: const AppBarTheme(color: primaryColor, elevation: 0),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       elevation: 15,
       backgroundColor: secondaryColor,

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:movies_app/Model/movie_details/MoviesDetails.dart';
 import 'package:movies_app/Model/movie_top_rated/MovieTopRated.dart';
+import 'package:movies_app/Model/search/SearchResponse.dart';
 
 import '../movie_popular/MoviePopular.dart';
 import '../movie_similar/MoviesSimilar.dart';
@@ -39,6 +40,17 @@ class ApiManager {
     var url = Uri.https(baseUrl, '/3/movie/$id/similar', {"api_key": apiKey});
     var response = await http.get(url);
     return MoviesSimilar.fromJson(
+      jsonDecode(response.body),
+    );
+  }
+
+  static Future<SearchResponse> searchResponse(String query) async {
+    var url = Uri.https(baseUrl, '/3/search/movie', {
+      "api_key": apiKey,
+      "query": query,
+    });
+    var response = await http.get(url);
+    return SearchResponse.fromJson(
       jsonDecode(response.body),
     );
   }

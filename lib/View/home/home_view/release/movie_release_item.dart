@@ -10,20 +10,23 @@ class MovieReleaseItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 8),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(6),
-        child: CachedNetworkImage(
-          fit: BoxFit.fill,
-          width: 100,
-          height: 130,
-          imageUrl:
-              'https://image.tmdb.org/t/p/w500${moviePopular?.results?[index].posterPath}',
-          placeholder: (context, url) =>
-              const Center(child: CircularProgressIndicator()),
-          errorWidget: (context, url, error) =>
-              const Center(child: Icon(Icons.error)),
+    return InkWell(
+      onTap: () {},
+      child: Padding(
+        padding: const EdgeInsets.only(right: 8),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(6),
+          child: CachedNetworkImage(
+            fit: BoxFit.fill,
+            width: 100,
+            height: 130,
+            imageUrl:
+                'https://image.tmdb.org/t/p/w500${moviePopular?.results?[index].posterPath}',
+            placeholder: (context, url) =>
+                const Center(child: CircularProgressIndicator()),
+            errorWidget: (context, url, error) =>
+                const Center(child: Icon(Icons.error)),
+          ),
         ),
       ),
     );

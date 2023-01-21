@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:movies_app/Model/movie_popular/Results.dart';
+import 'package:movies_app/Model/movie_popular/Result.dart';
 
 import '../../details/details_view.dart';
 
@@ -14,11 +14,7 @@ class MoviePopularWidget extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(
-          context,
-          DetailsView.routeName,
-          arguments: result,
-        );
+        Navigator.pushNamed(context, DetailsView.routeName, arguments: result);
       },
       child: SizedBox(
         height: size.height * 0.30,
