@@ -2,6 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app/Model/movie_popular/MoviePopular.dart';
 
+import '../../details/details_view.dart';
+
 class MovieReleaseItem extends StatelessWidget {
   MoviePopular? moviePopular;
   int index;
@@ -11,7 +13,10 @@ class MovieReleaseItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushNamed(context, DetailsView.routeName,
+            arguments: moviePopular?.results?[index]);
+      },
       child: Padding(
         padding: const EdgeInsets.only(right: 8),
         child: ClipRRect(

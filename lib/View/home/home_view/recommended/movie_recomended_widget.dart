@@ -14,7 +14,7 @@ class MovieRecommended extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 10),
       width: double.infinity,
-      height: 280,
+      height: 285,
       color: MyTheme.secondaryColor,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,

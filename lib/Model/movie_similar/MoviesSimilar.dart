@@ -1,4 +1,4 @@
-import 'Results.dart';
+import '../movie_popular/Result.dart';
 
 /// page : 1
 /// status_code : 7
@@ -24,7 +24,7 @@ class MoviesSimilar {
     if (json['results'] != null) {
       results = [];
       json['results'].forEach((v) {
-        results?.add(Results.fromJson(v));
+        results?.add(Result.fromJson(v));
       });
     }
     totalPages = json['total_pages'];
@@ -34,7 +34,7 @@ class MoviesSimilar {
   num? page;
   num? statusCode;
   String? statusMessage;
-  List<Results>? results;
+  List<Result>? results;
   num? totalPages;
   num? totalResults;
 

@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:movies_app/Model/browse/BrowseResponse.dart';
+import 'package:movies_app/Model/browse_list/BrowseListResponse.dart';
 import 'package:movies_app/Model/movie_details/MoviesDetails.dart';
 import 'package:movies_app/Model/movie_top_rated/MovieTopRated.dart';
 import 'package:movies_app/Model/search/SearchResponse.dart';
@@ -51,6 +53,27 @@ class ApiManager {
     });
     var response = await http.get(url);
     return SearchResponse.fromJson(
+      jsonDecode(response.body),
+    );
+  }
+
+  static Future<BrowseResponse> genresResponse() async {
+    var url = Uri.https(baseUrl, '/3/genre/movie/list', {
+      "api_key": apiKey,
+    });
+    var response = await http.get(url);
+    return BrowseResponse.fromJson(
+      jsonDecode(response.body),
+    );
+  }
+
+  static Future<BrowseListResponse> browseListResponse(String name) async {
+    var url = Uri.https(baseUrl, '/3/discover/movie', {
+      "api_key": apiKey,
+      "with_genres": name,
+    });
+    var response = await http.get(url);
+    return BrowseListResponse.fromJson(
       jsonDecode(response.body),
     );
   }

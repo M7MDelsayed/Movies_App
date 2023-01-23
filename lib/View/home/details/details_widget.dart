@@ -50,7 +50,7 @@ class DetailsWidget extends StatelessWidget {
                 size: 20,
               ),
               const SizedBox(
-                width: 10,
+                width: 5,
               ),
               Text(
                 '${moviesDetails?.voteAverage}',

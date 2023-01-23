@@ -11,7 +11,6 @@ import 'details_widget.dart';
 
 class DetailsView extends StatelessWidget {
   static const String routeName = 'details';
-  Result? moviesDetails;
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +72,7 @@ class DetailsView extends StatelessWidget {
                   Row(
                     children: [
                       SizedBox(
-                        height: 210,
+                        height: 225,
                         width: 120,
                         child: CachedNetworkImage(
                           fit: BoxFit.fill,
@@ -85,8 +84,8 @@ class DetailsView extends StatelessWidget {
                               const Center(child: Icon(Icons.error)),
                         ),
                       ),
-                      SizedBox(
-                        height: 210,
+                      Container(
+                        height: 225,
                         width: 248,
                         child: FutureBuilder<MoviesDetails>(
                           future: ApiManager.getMovieDetails(args.id!),
