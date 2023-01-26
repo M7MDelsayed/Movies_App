@@ -36,7 +36,7 @@ class DetailsWidget extends StatelessWidget {
                     moviesDetails?.overview ?? '',
                     style: const TextStyle(
                       color: Colors.grey,
-                    ),
+                        fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
@@ -56,7 +56,7 @@ class DetailsWidget extends StatelessWidget {
                 '${moviesDetails?.voteAverage}',
                 style: const TextStyle(
                   color: Colors.white,
-                ),
+                    fontWeight: FontWeight.bold),
               ),
             ],
           ),

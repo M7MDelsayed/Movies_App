@@ -19,7 +19,8 @@ class DetailsItem extends StatelessWidget {
       child: Center(
         child: Text(
           moviesDetails?.genres?[index!].name ?? '',
-          style: const TextStyle(color: Colors.grey),
+          style:
+              const TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
         ),
       ),
     );

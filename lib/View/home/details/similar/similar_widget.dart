@@ -21,7 +21,7 @@ class SimilarWidget extends StatelessWidget {
         children: [
           const Text(
             'More Like This',
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           ),
           const SizedBox(
             height: 8,

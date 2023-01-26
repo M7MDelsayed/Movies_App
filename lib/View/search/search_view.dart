@@ -40,7 +40,8 @@ class _SearchViewState extends State<SearchView> {
                   color: Colors.white,
                 ),
                 hintText: "Search",
-                hintStyle: const TextStyle(color: Colors.white),
+                hintStyle: const TextStyle(
+                    color: Colors.white, fontWeight: FontWeight.bold),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(24),
                   borderSide: const BorderSide(color: Colors.white, width: 1),
@@ -62,7 +63,7 @@ class _SearchViewState extends State<SearchView> {
           : ListView.builder(
               itemBuilder: (context, index) {
                 return SearchWidget(
-                  search().elementAt(index),
+                  search()[index],
                 );
               },
               itemCount: search().length,

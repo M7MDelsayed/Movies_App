@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app/Model/movie_similar/MoviesSimilar.dart';
+import 'package:movies_app/Providers/app_provider.dart';
 import 'package:movies_app/View/home/details/details_view.dart';
+import 'package:provider/provider.dart';
 
 class SimilarWidgetItem extends StatelessWidget {
   MoviesSimilar? moviesSimilar;
@@ -11,6 +13,7 @@ class SimilarWidgetItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppProvider>(context);
     return InkWell(
       onTap: () {
         Navigator.pushNamed(context, DetailsView.routeName,
@@ -27,16 +30,29 @@ class SimilarWidgetItem extends StatelessWidget {
                 padding: const EdgeInsets.only(right: 8),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(6),
-                  child: CachedNetworkImage(
-                    width: 200,
-                    height: 150,
-                    fit: BoxFit.fill,
-                    imageUrl:
-                        'https://image.tmdb.org/t/p/w500${moviesSimilar?.results?[index!].posterPath}',
-                    placeholder: (context, url) =>
-                        const Center(child: CircularProgressIndicator()),
-                    errorWidget: (context, url, error) =>
-                        const Center(child: Icon(Icons.error)),
+                  child: Stack(
+                    children: [
+                      CachedNetworkImage(
+                        width: 200,
+                        height: 150,
+                        fit: BoxFit.fill,
+                        imageUrl:
+                            'https://image.tmdb.org/t/p/w500${moviesSimilar?.results?[index!].posterPath}',
+                        placeholder: (context, url) =>
+                            const Center(child: CircularProgressIndicator()),
+                        errorWidget: (context, url, error) =>
+                            const Center(child: Icon(Icons.error)),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          provider.selectMovie(moviesSimilar!.results![index!]);
+                        },
+                        child: provider.idList
+                                .contains(moviesSimilar?.results?[index!].id)
+                            ? Image.asset('assets/images/bookmark_done.png')
+                            : Image.asset('assets/images/bookmark.png'),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -56,8 +72,8 @@ class SimilarWidgetItem extends StatelessWidget {
                   Text(
                     '${moviesSimilar?.results?[index!].voteAverage}',
                     style: const TextStyle(
-                      color: Colors.white,
-                    ),
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
@@ -67,8 +83,8 @@ class SimilarWidgetItem extends StatelessWidget {
               Text(
                 '${moviesSimilar?.results?[index!].title}',
                 style: const TextStyle(
-                  color: Colors.white,
-                ),
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold),
                 textAlign: TextAlign.start,
               ),
               const SizedBox(
@@ -77,8 +93,8 @@ class SimilarWidgetItem extends StatelessWidget {
               Text(
                 '${moviesSimilar?.results?[index!].releaseDate}',
                 style: const TextStyle(
-                  color: Colors.white,
-                ),
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold),
                 textAlign: TextAlign.start,
               ),
             ],

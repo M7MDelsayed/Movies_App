@@ -1,30 +1,30 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:movies_app/Model/movie_popular/Result.dart';
 import 'package:movies_app/Providers/app_provider.dart';
+import 'package:movies_app/View/home/details/details_view.dart';
 import 'package:provider/provider.dart';
 
 import '../../Core/theme/my_theme.dart';
-import '../../Model/movie_popular/Result.dart';
-import '../home/details/details_view.dart';
 
-class BrowseItem extends StatelessWidget {
-  Result? browseItem;
+class WatchItem extends StatelessWidget {
+  Result resultWatchItem;
 
-  BrowseItem(this.browseItem);
+  WatchItem(this.resultWatchItem);
 
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<AppProvider>(context);
-    return InkWell(
-      onTap: () {
-        Navigator.pushNamed(context, DetailsView.routeName,
-            arguments: browseItem);
-      },
-      child: Container(
-        padding: const EdgeInsets.all(12),
-        child: Column(
-          children: [
-            Row(
+    return Container(
+      padding: const EdgeInsets.all(12),
+      child: Column(
+        children: [
+          InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, DetailsView.routeName,
+                  arguments: resultWatchItem);
+            },
+            child: Row(
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(12),
@@ -34,7 +34,7 @@ class BrowseItem extends StatelessWidget {
                         height: 100,
                         width: 150,
                         imageUrl:
-                            'https://image.tmdb.org/t/p/w500${browseItem?.backdropPath}',
+                            'https://image.tmdb.org/t/p/w500${resultWatchItem.backdropPath}',
                         fit: BoxFit.fill,
                         placeholder: (context, url) =>
                             const Center(child: CircularProgressIndicator()),
@@ -43,9 +43,9 @@ class BrowseItem extends StatelessWidget {
                       ),
                       InkWell(
                         onTap: () {
-                          provider.selectMovie(browseItem!);
+                          provider.selectMovie(resultWatchItem);
                         },
-                        child: provider.idList.contains(browseItem?.id)
+                        child: provider.idList.contains(resultWatchItem.id)
                             ? Image.asset('assets/images/bookmark_done.png')
                             : Image.asset('assets/images/bookmark.png'),
                       ),
@@ -55,12 +55,12 @@ class BrowseItem extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
-                    width: 202,
+                    width: 170,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Text(
-                          browseItem!.title!,
+                          resultWatchItem.title!,
                           style: const TextStyle(
                             color: Colors.white,
                             fontSize: 15,
@@ -71,7 +71,7 @@ class BrowseItem extends StatelessWidget {
                           height: 10,
                         ),
                         Text(
-                          browseItem!.releaseDate!,
+                          resultWatchItem.releaseDate!,
                           style: const TextStyle(
                             color: Colors.white,
                             fontSize: 15,
@@ -92,7 +92,7 @@ class BrowseItem extends StatelessWidget {
                               width: 5,
                             ),
                             Text(
-                              '${browseItem?.voteAverage}',
+                              '${resultWatchItem.voteAverage}',
                               style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 15,
@@ -107,16 +107,16 @@ class BrowseItem extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(
-              height: 15,
-            ),
-            Container(
-              width: double.infinity,
-              height: 1.5,
-              color: MyTheme.secondaryColor,
-            ),
-          ],
-        ),
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          Container(
+            width: double.infinity,
+            height: 1.5,
+            color: MyTheme.secondaryColor,
+          ),
+        ],
       ),
     );
   }

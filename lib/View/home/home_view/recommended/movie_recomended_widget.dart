@@ -21,7 +21,7 @@ class MovieRecommended extends StatelessWidget {
         children: [
           const Text(
             'Recommended',
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           ),
           const SizedBox(
             height: 8,

@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app/Model/movie_popular/Result.dart';
+import 'package:movies_app/Providers/app_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../../details/details_view.dart';
 
@@ -12,6 +14,7 @@ class MoviePopularWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    var provider = Provider.of<AppProvider>(context);
     return InkWell(
       onTap: () {
         Navigator.pushNamed(context, DetailsView.routeName, arguments: result);
@@ -45,16 +48,28 @@ class MoviePopularWidget extends StatelessWidget {
             Positioned(
               left: size.width * 0.05,
               top: size.height * 0.06,
-              child: SizedBox(
+              child: Container(
                 height: 180,
                 width: 120,
-                child: CachedNetworkImage(
-                  imageUrl:
-                      'https://image.tmdb.org/t/p/w500${result?.posterPath}',
-                  placeholder: (context, url) =>
-                      const Center(child: CircularProgressIndicator()),
-                  errorWidget: (context, url, error) =>
-                      const Center(child: Icon(Icons.error)),
+                child: Stack(
+                  children: [
+                    CachedNetworkImage(
+                      imageUrl:
+                          'https://image.tmdb.org/t/p/w500${result?.posterPath}',
+                      placeholder: (context, url) =>
+                          const Center(child: CircularProgressIndicator()),
+                      errorWidget: (context, url, error) =>
+                          const Center(child: Icon(Icons.error)),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        provider.selectMovie(result!);
+                      },
+                      child: provider.idList.contains(result?.id)
+                          ? Image.asset('assets/images/bookmark_done.png')
+                          : Image.asset('assets/images/bookmark.png'),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -72,14 +87,16 @@ class MoviePopularWidget extends StatelessWidget {
                       height: 18,
                       child: Text(
                         result?.title ?? '',
-                        style: const TextStyle(color: Colors.white),
+                        style: const TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold),
                       ),
                     ),
                     SizedBox(
                       height: 18,
                       child: Text(
                         result?.releaseDate ?? '',
-                        style: const TextStyle(color: Colors.white),
+                        style: const TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold),
                       ),
                     ),
                   ],

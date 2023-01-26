@@ -22,7 +22,7 @@ class MovieReleaseWidget extends StatelessWidget {
         children: [
           const Text(
             'New Releases',
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           ),
           const SizedBox(
             height: 8,

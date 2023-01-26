@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/Core/theme/my_theme.dart';
+import 'package:movies_app/Providers/app_provider.dart';
 import 'package:movies_app/View/home_screen.dart';
+import 'package:provider/provider.dart';
 
 import 'View/home/details/details_view.dart';
 import 'View/splash_view.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(ChangeNotifierProvider(
+      create: (context) => AppProvider(), child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
