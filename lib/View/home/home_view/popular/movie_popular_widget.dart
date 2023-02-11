@@ -48,7 +48,7 @@ class MoviePopularWidget extends StatelessWidget {
             Positioned(
               left: size.width * 0.05,
               top: size.height * 0.06,
-              child: Container(
+              child: SizedBox(
                 height: 180,
                 width: 120,
                 child: Stack(

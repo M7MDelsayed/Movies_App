@@ -11,9 +11,14 @@ import 'package:provider/provider.dart';
 import '../../../Model/movie_similar/MoviesSimilar.dart';
 import 'details_widget.dart';
 
-class DetailsView extends StatelessWidget {
+class DetailsView extends StatefulWidget {
   static const String routeName = 'details';
 
+  @override
+  State<DetailsView> createState() => _DetailsViewState();
+}
+
+class _DetailsViewState extends State<DetailsView> {
   @override
   Widget build(BuildContext context) {
     var args = ModalRoute.of(context)?.settings.arguments as Result;
@@ -34,12 +39,12 @@ class DetailsView extends StatelessWidget {
                   height: MediaQuery.of(context).size.height * 0.20,
                   child: CachedNetworkImage(
                     imageUrl:
-                        'https://image.tmdb.org/t/p/w500${args.backdropPath}',
+                    'https://image.tmdb.org/t/p/w500${args.backdropPath}',
                     fit: BoxFit.fill,
                     placeholder: (context, url) =>
-                        const Center(child: CircularProgressIndicator()),
+                    const Center(child: CircularProgressIndicator()),
                     errorWidget: (context, url, error) =>
-                        const Center(child: Icon(Icons.error)),
+                    const Center(child: Icon(Icons.error)),
                   ),
                 ),
                 Positioned(
@@ -85,11 +90,11 @@ class DetailsView extends StatelessWidget {
                               fit: BoxFit.fill,
                               height: 225,
                               imageUrl:
-                                  'https://image.tmdb.org/t/p/w500${args.posterPath}',
+                              'https://image.tmdb.org/t/p/w500${args.posterPath}',
                               placeholder: (context, url) => const Center(
                                   child: CircularProgressIndicator()),
                               errorWidget: (context, url, error) =>
-                                  const Center(child: Icon(Icons.error)),
+                              const Center(child: Icon(Icons.error)),
                             ),
                             InkWell(
                               onTap: () {
@@ -97,13 +102,13 @@ class DetailsView extends StatelessWidget {
                               },
                               child: provider.idList.contains(args.id)
                                   ? Image.asset(
-                                      'assets/images/bookmark_done.png')
+                                  'assets/images/bookmark_done.png')
                                   : Image.asset('assets/images/bookmark.png'),
                             ),
                           ],
                         ),
                       ),
-                      Container(
+                      SizedBox(
                         height: 225,
                         width: 248,
                         child: FutureBuilder<MoviesDetails>(

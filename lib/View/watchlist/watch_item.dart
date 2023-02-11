@@ -8,9 +8,9 @@ import 'package:provider/provider.dart';
 import '../../Core/theme/my_theme.dart';
 
 class WatchItem extends StatelessWidget {
-  Result resultWatchItem;
+  Result result;
 
-  WatchItem(this.resultWatchItem);
+  WatchItem(this.result);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class WatchItem extends StatelessWidget {
           InkWell(
             onTap: () {
               Navigator.pushNamed(context, DetailsView.routeName,
-                  arguments: resultWatchItem);
+                  arguments: result);
             },
             child: Row(
               children: [
@@ -34,7 +34,7 @@ class WatchItem extends StatelessWidget {
                         height: 100,
                         width: 150,
                         imageUrl:
-                            'https://image.tmdb.org/t/p/w500${resultWatchItem.backdropPath}',
+                            'https://image.tmdb.org/t/p/w500${result.backdropPath}',
                         fit: BoxFit.fill,
                         placeholder: (context, url) =>
                             const Center(child: CircularProgressIndicator()),
@@ -43,9 +43,9 @@ class WatchItem extends StatelessWidget {
                       ),
                       InkWell(
                         onTap: () {
-                          provider.selectMovie(resultWatchItem);
+                          provider.selectMovie(result);
                         },
-                        child: provider.idList.contains(resultWatchItem.id)
+                        child: provider.idList.contains(result.id)
                             ? Image.asset('assets/images/bookmark_done.png')
                             : Image.asset('assets/images/bookmark.png'),
                       ),
@@ -54,13 +54,13 @@ class WatchItem extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Container(
+                  child: SizedBox(
                     width: 170,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Text(
-                          resultWatchItem.title!,
+                          result.title!,
                           style: const TextStyle(
                             color: Colors.white,
                             fontSize: 15,
@@ -71,7 +71,7 @@ class WatchItem extends StatelessWidget {
                           height: 10,
                         ),
                         Text(
-                          resultWatchItem.releaseDate!,
+                          result.releaseDate!,
                           style: const TextStyle(
                             color: Colors.white,
                             fontSize: 15,
@@ -92,7 +92,7 @@ class WatchItem extends StatelessWidget {
                               width: 5,
                             ),
                             Text(
-                              '${resultWatchItem.voteAverage}',
+                              '${result.voteAverage}',
                               style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 15,

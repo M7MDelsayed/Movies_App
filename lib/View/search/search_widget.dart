@@ -38,7 +38,7 @@ class SearchWidget extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Container(
+                  child: SizedBox(
                     width: 202,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,

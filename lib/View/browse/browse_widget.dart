@@ -21,7 +21,7 @@ class BrowseWidget extends StatelessWidget {
           ),
         );
       },
-      child: Container(
+      child: SizedBox(
         width: 160,
         height: 90,
         child: Stack(

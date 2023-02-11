@@ -8,8 +8,12 @@ import 'View/home/details/details_view.dart';
 import 'View/splash_view.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider(
-      create: (context) => AppProvider(), child: MyApp()));
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => AppProvider(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

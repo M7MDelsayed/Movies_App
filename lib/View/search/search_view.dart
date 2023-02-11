@@ -27,6 +27,7 @@ class _SearchViewState extends State<SearchView> {
             padding: const EdgeInsets.all(10),
             margin: const EdgeInsets.all(10),
             child: TextFormField(
+              style: const TextStyle(color: Colors.white),
               onChanged: (newQuery) {
                 setState(() {
                   query = newQuery;

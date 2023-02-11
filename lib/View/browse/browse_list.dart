@@ -17,38 +17,36 @@ class BrowseList extends StatelessWidget {
         title: Text('${genres?.name ?? ''} List'),
         centerTitle: true,
       ),
-      body: Container(
-        child: Column(
-          children: [
-            FutureBuilder<BrowseListResponse>(
-              future: ApiManager.browseListResponse('${genres?.id}'),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-                if (snapshot.hasError) {
-                  return Center(
-                    child: Text(snapshot.error.toString()),
-                  );
-                }
-                if (snapshot.data?.statusCode == 7) {
-                  return Center(
-                    child: Text(snapshot.data?.statusMessage ?? ''),
-                  );
-                }
-                return Expanded(
-                  child: ListView.builder(
-                      itemBuilder: (context, index) {
-                        return BrowseItem(snapshot.data?.results?[index]);
-                      },
-                      itemCount: snapshot.data!.results!.length),
+      body: Column(
+        children: [
+          FutureBuilder<BrowseListResponse>(
+            future: ApiManager.browseListResponse('${genres?.id}'),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(
+                  child: CircularProgressIndicator(),
                 );
-              },
-            ),
-          ],
-        ),
+              }
+              if (snapshot.hasError) {
+                return Center(
+                  child: Text(snapshot.error.toString()),
+                );
+              }
+              if (snapshot.data?.statusCode == 7) {
+                return Center(
+                  child: Text(snapshot.data?.statusMessage ?? ''),
+                );
+              }
+              return Expanded(
+                child: ListView.builder(
+                    itemBuilder: (context, index) {
+                      return BrowseItem(snapshot.data?.results?[index]);
+                    },
+                    itemCount: snapshot.data!.results!.length),
+              );
+            },
+          ),
+        ],
       ),
     );
   }
