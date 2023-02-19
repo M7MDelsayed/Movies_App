@@ -1,6 +1,7 @@
 # movies_app
 
-Flutter application to get daily or weekly trending movies integrated with themoviedb Api , build by using flutter basics widgets & provider state management & http & carousel slider & cached network image
+Flutter application to get daily or weekly trending movies integrated with themoviedb Api , build by using flutter basics widgets 
+& provider state management & http & carousel slider & cached network image
 
 ## Screens it containes : 
 => Splash Screen                                                                                                                                                         
